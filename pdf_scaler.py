@@ -1,17 +1,20 @@
-#! ./resize_env/bin/python
+#! ./scaler-env/bin/ python
+
 import inquirer
 import os
 import tkinter as tk
 from tkinter import filedialog
 
+# Open tk file dialog
 root = tk.Tk()
 root.withdraw()
+# Retrieve filename
 filename = filedialog.askopenfilename()
 
 if filename == None:
     print("Must select a pdf file")
 
-
+# Select output name
 outputname = input('Nome del file in output-> ')
 
 print(outputname)
@@ -37,6 +40,7 @@ elif quality["size"] == "medium":
 elif quality["size"] == "small":
     q = "/screen"
 
+# Do
 os.system(
     f"gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS={q} -dNOPAUSE -dQUIET -dBATCH -sOutputFile={outputname}re {filename} "
 )
